@@ -1,0 +1,77 @@
+.al{
+	background:#ffffff;
+	margin:0;
+}
+.content{
+  width: 1300px;
+  margin: 0 auto;
+  position: relative;
+  background:#ffffff;
+}
+.cont-title{
+	height:50px;
+	text-align:center;
+	color:#333;
+	font-size: 36px;
+}
+.img_wrap{
+     width: 400px;
+     height: 300px;
+     text-align: center;}
+.img_wrap p{
+	width:400px;
+    	height:200px;
+     	line-height:300px;  /* 行高等于高度 */
+}
+.img_wrap p img{
+       	*margin-top:expression((400 - this.height )/2);  /* CSS表达式用来兼容IE6/IE7 */
+	vertical-align:middle;
+	transform:scale(1.1);
+}
+.spread{
+    position: relative;
+}
+.dn,.hidden{
+  display: none;
+}
+.hot div.active i.active{
+    background-position: -70px 0;
+}
+.spread1{
+  border-top:2px solid #3293ff;
+  background: #f3f5f6;
+  position: relative;
+  padding: 54px 130px;
+  margin-top: 0px;
+  height:370px;
+}
+.tu{
+  display: inline-block;
+  width: 25px;
+  height: 18px;
+  background: url(./tu.png) no-repeat;
+  position: absolute;
+  top: -18px;
+  left: 210px;
+}
+.tu.tu2{
+    left: 643px;
+}
+.tu.tu3{
+  left: 1060px;
+}
+.server-list a{
+  display: inline-block;
+  background: #3293ff;
+  color: #fff;
+  padding: 9px 20px;
+  border-radius: 2px;
+  border: 1px solid #3293ff;
+  margin-top: 25px;
+}
+.foot{
+  height: 20px;
+}
+.head{
+ height: 50px;
+}

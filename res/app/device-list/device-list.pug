@@ -21,6 +21,29 @@
               text-focus-select, accesskey='4').form-control.input-sm.device-search.pull-right
 
             span.pull-right(ng-if='activeTabs.details && !$root.basicMode')
+
+              .btn-group(uib-dropdown).pull-right
+                button.btn.btn-sm.btn-primary-outline(id='run',type='button', ng-click='runAir()')
+                  i.fa.fa-caret-right
+                  span(ng-bind='"runAir"|translate')
+                button.btn.btn-sm.btn-primary-outline(id='install',type='button', ng-click='installAPK()')
+                  span(ng-bind='"installAPK"|translate')
+                button.btn.btn-sm.btn-primary-outline(id='uninstall',type='button', ng-click='uninstallAPK()')
+                  span(ng-bind='"uninstallAPK"|translate')
+              .progress.progress-striped.pull-right.meter(ng-show='isShow')
+                .progress-bar.progress-bar-success(id='progressBar',role='progressbar',style="width: 0%;") 0%
+              .btn-group.pull-right
+                button.btn.btn-sm.btn-primary-outline(type='button', ng-file-select='fileUpload($files)')
+                  i.fa.fa-android
+                  span(ng-bind='"apkUpload"|translate')
+              .progress.progress-striped.pull-right.meter(ng-show='isShow1')
+                .progress-bar.progress-bar-success(id='progressBar1',role='progressbar',style="width: 0%;") 0%
+              .btn-group(uib-dropdown).pull-right
+                 button.btn.btn-sm.btn-primary-outline(type='button', ng-click='cInput()')
+                   i.fa.fa-copy
+                   span(ng-bind='"scriptUpload"|translate')
+                   input(type='file',tabindex='-1',ng-file-select='folderUpload($files)',webkitdirectory,id='upload',style='width: 1px; height: 1px; opacity: 0; position: absolute; padding: 0px; margin: 0px; overflow: hidden;')
+
               .btn-group(uib-dropdown).pull-right
                 button.btn.btn-sm.btn-primary-outline(type='button', uib-dropdown-toggle)
                   i.fa.fa-columns

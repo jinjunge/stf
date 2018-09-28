@@ -21,10 +21,19 @@ var filterOps = {
 module.exports = function DeviceColumnService($filter, gettext) {
   // Definitions for all possible values.
   return {
-    state: DeviceStatusCell({
+    check: DeviceRunAirCell({
+      title: gettext('check')
+    })
+   , state: DeviceStatusCell({
       title: gettext('Status')
-    , value: function(device) {
+      , value: function(device) {
         return $filter('translate')(device.enhancedStateAction)
+      }
+    })
+  , scriptstatus: TextCell({
+      title: gettext('ScriptStatus')
+      , value: function(device) {
+        return device.APK_status || ''
       }
     })
   , model: DeviceModelCell({
@@ -282,9 +291,17 @@ module.exports = function DeviceColumnService($filter, gettext) {
       }
     })
   , notes: DeviceNoteCell({
-      title: gettext('Notes')
+      title: gettext('APKdir')
     , value: function(device) {
-        return device.notes || ''
+	    var q=device.notes
+  //      return (device.notes).split('/')[(device.notes).split('/').length - 1] || ''
+	   return q?q.split('/')[q.split('/').length - 1] || '':''
+      }
+    })
+  , scripts: DeviceScriptCell({
+      title: gettext('ScriptDir')
+     , value: function(device) {
+        return device.scripts || ''
       }
     })
   , owner: LinkCell({
@@ -330,6 +347,40 @@ function compareRespectCase(a, b) {
   }
 }
 
+
+function DeviceRunAirCell(options) {
+  return _.defaults(options, {
+    title: options.title
+    , defaultOrder: 'asc'
+    , build: function() {
+      var td = document.createElement('td')
+      var input = document.createElement('input')
+      input.type = 'checkbox'
+      input.className = 'airCheckBox'
+      td.appendChild(input)
+
+      return td
+    }
+    , update: function(td, device) {
+      var cb = td.firstChild
+
+      if(device.state === 'using' || device.state === 'absent' || device.APK_status==='install_start' || device.APK_status==='runAir_start' || device.APK_status==='uninstall_start') {
+        cb.disabled = true
+      } else {
+        cb.setAttribute('serial', device.serial)
+        cb.setAttribute('ip', device.provider.name)
+      }
+
+      return td
+    }
+    , compare: function(a, b) {
+
+    }
+    , filter: function(item, filter) {
+
+    }
+  })
+}
 
 function TextCell(options) {
   return _.defaults(options, {
@@ -662,24 +713,22 @@ function DeviceNoteCell(options) {
   , defaultOrder: 'asc'
   , build: function() {
       var td = document.createElement('td')
-      var span = document.createElement('span')
       var i = document.createElement('i')
-
+      var span = document.createElement('span')
       td.className = 'device-note'
+      td.setAttribute('style','max-width:400px;text-overflow:ellipsis; border:none;-o-text-overflow:ellipsis; overflow:hidden;border-top: 1px solid #ddd;')
+      i.className = 'device-note-edit fa fa-pencil pointer'
       span.className = 'xeditable-wrapper'
       span.appendChild(document.createTextNode(''))
 
-      i.className = 'device-note-edit fa fa-pencil pointer'
-
-      td.appendChild(span)
       td.appendChild(i)
+      td.appendChild(span)
 
       return td
     }
   , update: function(td, item) {
-      var span = td.firstChild
+      var span = td.lastChild
       var t = span.firstChild
-
       t.nodeValue = options.value(item)
       return td
     }
@@ -687,6 +736,42 @@ function DeviceNoteCell(options) {
       return compareIgnoreCase(options.value(a), options.value(b))
     }
   , filter: function(item, filter) {
+      return filterIgnoreCase(options.value(item), filter.query)
+    }
+  })
+}
+
+function DeviceScriptCell(options) {
+  return _.defaults(options, {
+    title: options.title
+    , defaultOrder: 'asc'
+    , build: function() {
+      var td = document.createElement('td')
+      var span = document.createElement('span')
+      var i = document.createElement('i')
+
+      td.className = 'device-script'
+      td.setAttribute('style','max-width:400px;min-width:400px;text-overflow:ellipsis; border:none;-o-text-overflow:ellipsis; overflow:hidden;border-top: 1px solid #ddd;')
+      span.className = 'xeditable-wrapper'
+      span.appendChild(document.createTextNode(''))
+
+      i.className = 'device-script-edit fa fa-pencil pointer'
+      td.appendChild(i)
+      td.appendChild(span)
+
+      return td
+    }
+    , update: function(td, item) {
+      var span = td.lastChild
+      var t = span.firstChild
+
+      t.nodeValue = options.value(item)
+      return td
+    }
+    , compare: function(a, b) {
+      return compareIgnoreCase(options.value(a), options.value(b))
+    }
+    , filter: function(item, filter) {
       return filterIgnoreCase(options.value(item), filter.query)
     }
   })

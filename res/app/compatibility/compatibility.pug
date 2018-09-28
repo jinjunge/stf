@@ -1,0 +1,72 @@
+div(fa-pane,pane-id='test-tabs')
+ .widget-content.padded.bkwhite.fill-height
+  .widget-container.fluid-height
+  uib-tabset.overflow-auto.device-list-active-tabs(ng-if='activeTabs')
+    uib-tab(active='activeTabs.icons', select='focusSearch()')
+              uib-tab-heading
+                i.fa.fa-th-large
+                span(translate) Devices
+              div.device-list-devices-content(ng-if='activeTabs.icons').selectable
+                div.select
+                  div 上传应用
+                  button.btn.btn-sm.btn-primary(type='button', ng-file-select='fileUpload($files)')
+                    i.fa.fa-android
+                    span(ng-bind='"apkUpload"|translate')
+                  input.serverIp.dn(type='checkbox',ip='172.27.82.2',style='margin-left:20px',checked=true)
+                  span.dn 172.27.82.2
+                  input.serverIp.dn(type='checkbox',ip='172.27.82.3', style='margin-left:20px',checked=true)
+                  span.dn 172.27.82.3”
+                  .progress.progress-striped.meter(ng-show='isShow')
+                    .progress-bar.progress-bar-success(id='progressBar',role='progressbar',style="width: 0%;") 0%
+                div.select
+                  div 请选择待测apk
+                  select(ng-model='selectedName.text' ng-change='myFun()'  style='margin-top:10px')
+                    option( ng-repeat="x in names",on-finish-render="ngRepeatFinished") {{x}}
+                div.select Usable Devices
+                compatibility-choice(tracker='tracker', columns='columns', sort='sort', filter='filter')
+                button.btn.btn-primary(id='run' ng-click='runTest()') 执行兼容性测试
+                div.sk-fading-circle.dn
+                  div.sk-circle1.sk-circle
+                  div.sk-circle2.sk-circle
+                  div.sk-circle3.sk-circle
+                  div.sk-circle4.sk-circle
+                  div.sk-circle5.sk-circle
+                  div.sk-circle6.sk-circle
+                  div.sk-circle7.sk-circle
+                  div.sk-circle8.sk-circle
+                  div.sk-circle9.sk-circle
+                  div.sk-circle10.sk-circle
+                  div.sk-circle11.sk-circle
+                  div.sk-circle12.sk-circle
+nice-tabs(key='ControlBottomTabs', tabs='appTestTabs', filter='')
+div(fa-pane, pane-anchor='south', pane-size='50%', pane-handle='4').pane-bottom-p
+  .widget-container.fluid-height.padded.bkwhite
+    div.reports
+      i.fa.fa-list
+      span.listspan TestResults
+    table.table(id='mytable')
+      thead
+        tr
+          th StartTime
+          th EndTime
+          th APP
+          th Device
+          th Result
+          th User
+          th Report
+      tbody
+        tr(ng-repeat="r in reports|orderBy:'startTime':true")
+          td {{r.startTime}}
+          td {{r.endTime}}
+          td {{r.apk}}
+          td {{r.device}}
+          td {{r.result}}
+          td {{r.user}}
+          td
+            a(href='http://{{r.ip}}:8000/{{userName}}',target='_blank')
+              span.fa.fa-sticky-note
+    table( width="60%", align="right")
+      tr
+        td
+          div(id="barcon",name="barcon")
+

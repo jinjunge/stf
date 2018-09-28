@@ -218,5 +218,12 @@ module.exports = function DeviceServiceFactory($http, socket, EnhanceDeviceServi
     })
   }
 
+  deviceService.updateScript = function(serial, script) {
+    socket.emit('device.script', {
+      serial: serial,
+      script: script
+    })
+  }
+
   return deviceService
 }

@@ -84,6 +84,22 @@ img.device-icon-smallest {
   visibility: hidden;
 }
 
+.stf-device-list .device-script-edit {
+  margin-left: 15px;
+  visibility: hidden;
+}
+
 .stf-device-list .device-note:hover .device-note-edit {
   visibility: visible;
+}
+
+.stf-device-list .device-script:hover .device-script-edit {
+  visibility: visible;
+}
+
+.meter { 
+  height: 20px;  /* Can be anything */
+  position: relative;
+  width: 60px;
+  top:4px;
 }

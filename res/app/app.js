@@ -16,7 +16,9 @@ require.ensure([], function(require) {
     require('./docs').name,
     require('./user').name,
     require('./../common/lang').name,
-    require('stf/standalone').name
+    require('stf/standalone').name,
+    require('./reports').name,
+    require('./compatibility').name
   ])
     .config(function($routeProvider, $locationProvider) {
       $locationProvider.hashPrefix('!')

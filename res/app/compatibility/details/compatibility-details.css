@@ -1,0 +1,15 @@
+.page-holder {
+	display: inline-block;
+	height: 30px;
+	line-height: 30px;
+	margin-right: 20px;
+	float: right;
+}
+.page, .prev, .next, .total-page {
+	color: #616161;
+	padding: 0px 6px;
+	border:1px solid #f2f2f2;
+}
+.green{
+	color:#0A9908;
+}

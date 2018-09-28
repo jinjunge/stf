@@ -10,12 +10,13 @@ require.ensure([], function(require) {
     'ngTouch',
     require('gettext').name,
     require('./signin').name
+    ,require('./welcome').name
   ])
     .config(function($routeProvider, $locationProvider) {
       $locationProvider.html5Mode(true)
-      $routeProvider
+      $routeProvider    
         .otherwise({
-          redirectTo: '/auth/mock/'
+          redirectTo: '/auth/welcome/'
         })
     })
 })

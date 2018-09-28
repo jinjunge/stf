@@ -1,6 +1,6 @@
 .navbar.stf-menu(ng-controller='MenuCtrl')
   .container-fluid.stf-top-bar
-    a.stf-logo(ng-href="/#!/devices") STF
+    a.stf-logo(ng-href="/#!/devices") GT
     ul.nav.stf-nav(nav-menu='current').unselectable
       li(ng-cloak)
         a(ng-href='/#!/control/{{lastUsedDevice}}', ng-show='lastUsedDevice')
@@ -8,7 +8,13 @@
           span(ng-if='!$root.basicMode', translate) Control
         a(ng-href='/#!/devices', accesskey='1')
           span.fa.fa-sitemap
-          span(ng-if='!$root.basicMode', translate) Devices
+          span(ng-if='!$root.basicMode', translate) Game Test
+        a(ng-href='/#!/reports', accesskey='2')
+          span.fa.fa-sticky-note
+          span(ng-if='!$root.basicMode', translate) Game Reports
+        a(ng-href='/#!/compatibility', accesskey='3')
+          span.fa.fa-bug
+          span(ng-if='!$root.basicMode', translate) Compatibility
         a(ng-href='/#!/settings')
           span.fa.fa-gears
           span(ng-if='!$root.basicMode', translate) Settings
@@ -22,3 +28,8 @@
         a(ng-href='/#!/help', accesskey='6')
           i.fa.fa-question-circle.fa-fw
           | {{ "Help" | translate }}
+      
+      li(ng-show='!$root.basicMode')
+        a(ng-href='/auth/mock/', accesskey='7')
+          i.fa.fa-times-circle
+          span 切换用户

@@ -1,6 +1,10 @@
 require('./device-list.css')
+require('ng-file-upload')
+require('ui-bootstrap')
+require('angular-ui-grid')
 
 module.exports = angular.module('device-list', [
+  require('ui-bootstrap').name,
   require('angular-xeditable').name,
   require('stf/device').name,
   require('stf/user/group').name,
@@ -13,7 +17,9 @@ module.exports = angular.module('device-list', [
   require('./icons').name,
   require('./stats').name,
   require('./customize').name,
-  require('./search').name
+  require('./search').name,
+  'angularFileUpload'
+	, require('angular-ui-grid').name
 ])
   .config(['$routeProvider', function($routeProvider) {
     $routeProvider

@@ -115,6 +115,28 @@ module.exports = function DeviceListDetailsDirective(
           // Trigger click to open the form.
           angular.element(xeditableSpan).triggerHandler('click')
         }
+        else if (e.target.classList.contains('device-script-edit')){
+          var i = e.target
+          var id = i.parentNode.parentNode.id
+          var device = mapping[id]
+          var xeditableWrapper = i.parentNode.firstChild
+          var xeditableSpan = document.createElement('span')
+          var childScope = scope.$new()
+
+          xeditableSpan.setAttribute('editable-text', 'device.scripts')
+          xeditableSpan.setAttribute('onbeforesave', 'updateScript(id, device.serial, $data)')
+          xeditableSpan.setAttribute('onCancel', 'onDeviceNoteCancel(id)')
+
+          childScope.id = id
+          childScope.device = device
+          childScopes[id] = childScope
+
+          $compile(xeditableSpan)(childScope)
+          xeditableWrapper.appendChild(xeditableSpan)
+
+          // Trigger click to open the form.
+          angular.element(xeditableSpan).triggerHandler('click')
+        }
       }
 
       function destroyXeditableNote(id) {
@@ -140,6 +162,11 @@ module.exports = function DeviceListDetailsDirective(
 
       scope.updateNote = function(id, serial, note) {
         DeviceService.updateNote(serial, note)
+        destroyXeditableNote(id)
+      }
+
+      scope.updateScript = function(id, serial, script) {
+        DeviceService.updateScript(serial, script)
         destroyXeditableNote(id)
       }
 

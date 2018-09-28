@@ -1,7 +1,6 @@
-body {
-    background: #eeeeee;
+body{
+  background: #eeeeee;
 }
-
 .login2 {
     padding: 15px;
     background: #eeeeee;
@@ -76,4 +75,8 @@ body {
 .login2 .login-wrapper .social-login .twitter:hover {
     background-color: transparent;
     color: #00c7f7;
+}
+
+.defaultfontfamily {
+    font-family: "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
 }

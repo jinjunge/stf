@@ -15,3 +15,13 @@
 .device-list-details-content .device-status.state-available {
   font-weight: 600;
 }
+.dataTable tr td {  */
+/*	    text-overflow: ellipsis;  */ /* for IE */  
+/*	    -moz-text-overflow: ellipsis; */ /* for Firefox,mozilla */  
+	    overflow: hidden;          
+	    white-space: nowrap;   
+/*	    text-align: left;         */
+/*	    word-wrap: break-word;    */
+/*	    word-break: break-all;    */
+	   table-layout:fixed  }     
+

@@ -1,0 +1,37 @@
+.head
+h3.cont-title(style="margin-bottom:1px;") 金科云测平台
+.content(ng-controller='WelcomeCtrl')
+  .row.benefit-blurbs
+    .col-xs-12.col-sm-4.col-lg-4.bfn-clear.spread(id='1' ng-mouseenter='mouseenter1()'  ng-class='{"active":isActive1}')
+      .benefit-blurb.img_wrap
+        p
+          img(alt="图片1" src="//f.wetest.qq.com/gqop/10000/20002/OtherPic_fed92d210fc2eff5e35975b24b28cc2b.png" )
+          h4 兼容性测试
+    .col-xs-12.col-sm-4.col-lg-4.bfn-clear.spread(id='2'  ng-mouseenter='mouseenter2()' ng-class='{"active":isActive2}')
+      .benefit-blurb.img_wrap
+        p
+          img(alt="图片2" src="//f.wetest.qq.com/gqop/10000/20002/OtherPic_fbdce0c524a12a381f5bdb8a01af8855.png" style='transform:scale(0.45);')
+          h4 真机控制 
+    .col-xs-12.col-sm-4.col-lg-4.bfn-clear.spread(id='3'  ng-mouseenter='mouseenter3()' ng-class='{"active":isActive3}')
+      .benefit-blurb.img_wrap
+        p
+          img(alt="图片3" src="//f.wetest.qq.com/gqop/10000/20002/OtherPic_d98de6a5579bef9f91ae79e75be860e9.png")
+          h4 游戏及渠道包测试
+  
+  .contentBox
+    .spread1.server-list(ng-class='{"dn":!isActive1}')
+      i.tu
+      p 详情介绍1.....................................................
+      p 快速发现兼容性和性能问题，覆盖安卓主流机型
+      a(href='/auth/mock') 立即使用
+    .spread1.server-list(ng-class='{"dn":!isActive2}')
+      i.tu.tu2
+      p 详情介绍2.....................................................
+      p 海量真机
+      a(href='http://172.27.82.4:7100/auth/mock/') 立即使用
+    .spread1.server-list(ng-class='{"dn":!isActive3}')
+      i.tu.tu3
+      p 详情介绍3.....................................................
+      p 各种渠道包测试手到擒来
+      a(href='/auth/mock') 立即使用
+.foot

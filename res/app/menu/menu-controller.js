@@ -1,4 +1,4 @@
-module.exports = function MenuCtrl($scope, $rootScope, SettingsService,
+module.exports = function MenuCtrl($scope, $rootScope, SettingsService,$window,
   $location) {
 
   SettingsService.bind($scope, {
@@ -13,5 +13,10 @@ module.exports = function MenuCtrl($scope, $rootScope, SettingsService,
   $scope.$on('$routeChangeSuccess', function() {
     $scope.isControlRoute = $location.path().search('/control') !== -1
   })
+  
+  $scope.logout=function(){
+    $window.location.href='/auth/mock/'
+    $window.close()
+  }
 
 }
